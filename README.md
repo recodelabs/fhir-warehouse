@@ -1,5 +1,15 @@
 # fhir-warehouse
 
+> **fhir-warehouse is now `fhir-pipes refresh` in
+> [fhir-pipes](https://github.com/ohs-foundation/fhir-pipes-rs), and this repository is
+> archived.** The same config file works (`fhir-pipes.toml`, or `fhir-warehouse.toml` as
+> before, minus `tools.kiln`); the FHIR side runs in the same binary instead of calling kiln,
+> and the views step downloads only what changed since the last refresh. `check` is
+> `refresh --check`, inputs are `FHIR_PIPES_*` environment variables, and the manifest's
+> `kiln` section is `extract`. See
+> [docs/refresh.md](https://github.com/ohs-foundation/fhir-pipes-rs/blob/main/docs/refresh.md).
+
+
 Refreshes a parquet warehouse from a FHIR server: one binary that downloads the
 data, runs [SQL-on-FHIR](https://sql-on-fhir.org) ViewDefinitions over it, and
 writes the result as hive-partitioned parquet tables with a manifest. It can
